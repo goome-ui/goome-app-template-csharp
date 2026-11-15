@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GoomeVersion>0.4.0</GoomeVersion>
+    <RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory)packages</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GoomeSharp" Version="$(GoomeVersion)" />
+    <Compile Remove="variants/**" />
+  </ItemGroup>
+
+  <Target Name="GetGoome" BeforeTargets="_LoadRestoreGraphEntryPoints;_GenerateRestoreProjectSpec;CollectPackageReferences" Condition="!Exists('$(MSBuildThisFileDirectory)packages/GoomeSharp.$(GoomeVersion).nupkg')">
+    <DownloadFile SourceUrl="https://github.com/goome-ui/csharp-goome/releases/download/v$(GoomeVersion)/GoomeSharp.$(GoomeVersion).nupkg" DestinationFolder="$(MSBuildThisFileDirectory)packages" />
+  </Target>
+
+</Project>
