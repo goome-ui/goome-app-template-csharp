@@ -4,7 +4,7 @@ const string AppName = "My Goome App";
 
 int clicks = 0;
 double volume = 0.5;
-bool overlay = false, mode = false;
+bool overlay = false, mode = false, shown = false;
 double x = 40, y = 60, w = 300, h = 0;
 
 Goome OpenMode(bool ov)
@@ -20,7 +20,9 @@ void Contents(Ui ui)
 {
     ui.Toggle("Overlay mode", ref overlay);
     ui.Separator();
-    ui.Heading("Hello from " + AppName);
+    using (ui.Style(text: ui.AnimColor("hello", shown ? 0xFFF2F4F8 : 0x00F2F4F8, 600, Ease.Out)))
+        ui.Heading("Hello from " + AppName);
+    shown = true;
     if (ui.Button("Click me")) clicks++;
     ui.Label($"clicked {clicks} times");
     ui.Slider("Volume", ref volume, 0, 1, "%.2f");
