@@ -59,7 +59,7 @@ It swaps "My Goome App" and friends for your name everywhere, files too, and lea
 <br>
 
 <p align="center">
-You need the .NET 8 SDK or newer. GoomeSharp isnt on NuGet yet, so the first build grabs the .nupkg from the <a href="https://github.com/goome-ui/csharp-goome/releases">csharp-goome releases</a> into <code>packages/</code> and uses it from there. It has the native lib for every OS inside.
+You need the .NET 8 SDK or newer. goome comes from <a href="https://www.nuget.org/packages/GoomeSharp">GoomeSharp on NuGet</a>, the first build grabs it. It has the native lib for every OS inside.
 </p>
 
 ```sh
@@ -67,7 +67,7 @@ dotnet run
 ```
 
 <p align="center">
-The goome version is <code>GoomeVersion</code> in <code>MyGoomeApp.csproj</code>. Change it, delete <code>packages/</code> and build again to update.
+The goome version is the GoomeSharp <code>Version</code> in <code>MyGoomeApp.csproj</code>, bump it to update.
 </p>
 </details>
 

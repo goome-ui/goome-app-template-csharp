@@ -40,7 +40,6 @@ jobs:
             d="$RUNNER_TEMP/v/$n"
             mkdir -p "$d" "shots-$n"
             cp *.csproj "$d/"
-            cp -r packages "$d/"
             cp "$v/Program.cs" "$d/"
             dotnet build -c Release "$d"
             GOOME_TEST_SHOTS="$PWD/shots-$n" GOOME_TEST_SCRIPT="screen 1280x720 1; 2 hotkey alt+m; 3 click 100,140; end 6" dotnet run -c Release --no-build --project "$d"
