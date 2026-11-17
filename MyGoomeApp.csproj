@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GoomeSharp" Version="0.5.0" />
+    <PackageReference Include="GoomeSharp" Version="0.5.2" />
     <Compile Remove="variants/**" />
   </ItemGroup>
 
