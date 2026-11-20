@@ -1,0 +1,31 @@
+name: update-goome
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-goome
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.repository == 'goome-ui/goome-app-template-csharp'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.BOT_TOKEN || github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+          token: ${{ secrets.BOT_TOKEN || github.token }}
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: bump goome
+        run: bash .github/update-goome.sh
